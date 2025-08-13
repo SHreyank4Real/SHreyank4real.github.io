@@ -1,14 +1,408 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>SHREYANK</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="content">
-      <h1 class="text" data-text="I'M SHREYANK">
-I'M SHREYANK</h1>
-</div>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shreyank Sharma — DevOps & Cloud Engineer (CKA)</title>
+  <meta name="description" content="Portfolio of Shreyank Sharma, DevOps & Cloud Engineer (CKA). Kubernetes, AWS, Terraform, Observability, DR, and automation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #111826;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --brand: #22d3ee; /* cyan-400 */
+      --accent: #a78bfa; /* violet-400 */
+      --ring: #22d3ee55;
+      --card: #0f172a;
+      --ok: #10b981;
+      --warn: #f59e0b;
+      --err: #ef4444;
+    }
+    :root.light {
+      --bg: #f8fafc;
+      --panel: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --brand: #0891b2;
+      --accent: #6d28d9;
+      --ring: #0891b255;
+      --card: #f1f5f9;
+      --ok: #059669;
+      --warn: #b45309;
+      --err: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg, var(--bg), #0b0f1400), radial-gradient(1000px 600px at 120% -10%, #22d3ee10, transparent 70%), radial-gradient(1000px 600px at -20% 10%, #a78bfa12, transparent 70%), var(--bg);
+      color: var(--text);
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1120px, 92vw); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--panel) 85%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+      z-index: 50;
+    }
+    .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding: 14px 0; }
+    .brand { display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.3px; }
+    .brand-logo { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--brand), var(--accent)); display:grid; place-items:center; box-shadow: 0 6px 24px var(--ring); }
+    .brand-logo svg{ width:18px; height:18px; color:white; }
+    .nav ul { display:flex; gap: 1rem; list-style:none; padding:0; margin:0; align-items:center; }
+    .nav a.btn{ display:inline-flex; align-items:center; gap:.5rem; background: var(--brand); color:#0b1220; padding:.6rem .9rem; border-radius: 12px; font-weight:700; border: 1px solid #00000014; box-shadow: 0 8px 20px var(--ring); }
+    .nav a.btn:hover{ text-decoration:none; transform: translateY(-1px); }
+
+    .hero { padding: 88px 0 36px; }
+    .hero .split { display:grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items:center; }
+    .title { font-size: clamp(28px, 4vw, 48px); line-height:1.05; font-weight:900; letter-spacing:-.02em; }
+    .subtitle { font-size: clamp(16px, 2vw, 20px); color: var(--muted); max-width: 62ch; }
+    .badgebar { display:flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 6px; }
+    .badge { border:1px solid color-mix(in oklab, var(--text) 16%, transparent); color: var(--text); padding: 6px 10px; border-radius: 999px; font-weight:600; font-size:.85rem; background: color-mix(in oklab, var(--panel) 80%, transparent); }
+    .cta { display:flex; gap: 12px; margin-top: 22px; flex-wrap:wrap; }
+    .btn { border:1px solid color-mix(in oklab, var(--text) 12%, transparent); background: var(--panel); color: var(--text); padding:.8rem 1rem; border-radius: 12px; font-weight:700; display:inline-flex; gap:.6rem; align-items:center; }
+    .btn:hover { transform: translateY(-1px); }
+
+    .card-grid { display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .card { grid-column: span 12; background: linear-gradient(180deg, color-mix(in oklab, var(--card) 88%, transparent), transparent 160%); border: 1px solid color-mix(in oklab, var(--text) 10%, transparent); padding: 18px; border-radius: 18px; box-shadow: 0 8px 30px -10px #0008; }
+    @media (min-width: 880px) {
+      .card.span-6 { grid-column: span 6; }
+      .card.span-4 { grid-column: span 4; }
+    }
+    .card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+    .muted { color: var(--muted); }
+    .kpi { display:flex; gap: 14px; flex-wrap:wrap; margin-top: 14px; }
+    .pill { background: color-mix(in oklab, var(--brand) 10%, var(--panel)); border: 1px solid color-mix(in oklab, var(--brand) 30%, transparent); padding:.5rem .7rem; border-radius: 999px; font-weight:700; }
+
+    section { padding: 36px 0; }
+    .section-title { display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.3px; text-transform:uppercase; font-size:.9rem; color: var(--muted); margin-bottom: 12px; }
+    .tl { border-left: 2px dashed color-mix(in oklab, var(--text) 18%, transparent); margin-left: 8px; padding-left: 16px; }
+    .tl-item { position: relative; margin: 0 0 18px 0; }
+    .tl-item::before { content: ""; position:absolute; left: -27px; top: 6px; width: 12px; height: 12px; border-radius: 999px; background: radial-gradient(circle at 30% 30%, white, var(--brand)); box-shadow: 0 0 0 6px var(--ring); }
+
+    .skills { display:flex; flex-wrap:wrap; gap:8px; }
+    .chip { padding:.55rem .7rem; border-radius: 12px; background: color-mix(in oklab, var(--panel) 86%, transparent); border: 1px solid color-mix(in oklab, var(--text) 12%, transparent); font-weight:600; }
+
+    .projects { display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .project { grid-column: span 12; border: 1px solid color-mix(in oklab, var(--text) 12%, transparent); border-radius: 16px; overflow:hidden; display:grid; grid-template-columns: 1fr; background: color-mix(in oklab, var(--panel) 86%, transparent); }
+    .project .media { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--brand), var(--accent)); display:grid; place-items:center; }
+    .project .media svg { width: 80px; height: 80px; color: white; opacity:.9; }
+    .project .body { padding: 16px; }
+    .project h4 { margin: 0 0 6px; }
+    .project .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+    .tag { font-size:.8rem; background: color-mix(in oklab, var(--brand) 10%, var(--panel)); border: 1px solid color-mix(in oklab, var(--brand) 22%, transparent); padding:.3rem .5rem; border-radius: 999px; }
+
+    .links { display:flex; flex-wrap:wrap; gap:10px; }
+    footer { padding: 40px 0 80px; color: var(--muted); }
+    .small { font-size:.9rem; }
+
+    .theme-toggle { cursor:pointer; border:1px solid color-mix(in oklab, var(--text) 14%, transparent); background: var(--panel); padding:.55rem .7rem; border-radius: 12px; display:inline-flex; gap:.5rem; align-items:center; }
+
+    /* smooth scroll anchor offset */
+    :target { scroll-margin-top: 90px; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>
+        </div>
+        <span>Shreyank Sharma</span>
+      </div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="theme" class="theme-toggle" title="Toggle theme">🌓 <span class="small">Theme</span></button></li>
+        <li><a class="btn" href="Shreyank_2025.pdf" download>⬇️ Resume</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container split">
+      <div>
+        <div class="badgebar">
+          <span class="badge">DevOps & Cloud Engineer</span>
+          <span class="badge">CKA certified</span>
+          <span class="badge">Bengaluru, India</span>
+        </div>
+        <h1 class="title">I build reliable, observable, and scalable systems on <span style="background: linear-gradient(90deg, var(--brand), var(--accent)); -webkit-background-clip:text; background-clip:text; color: transparent;">AWS & Kubernetes</span>.</h1>
+        <p class="subtitle">5+ years owning infra, CI/CD, DR, and observability. Strong with AWS CDK, Terraform, EKS, ELK/EFK, Prometheus/Grafana, Velero, and automation with Python & Shell. Pragmatic, fast, and calm under fire.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">View Projects →</a>
+          <a class="btn" href="mailto:sharma.shreyank6@gmail.com">Email Me</a>
+          <a class="btn" href="https://github.com/SHreyank4Real" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/shreyank-sharma-769a4a187/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="kpi">
+          <span class="pill">Kubernetes DR on AWS</span>
+          <span class="pill">EFK + Prom/Grafana</span>
+          <span class="pill">ElastiCache migration</span>
+          <span class="pill">S3 data migrations</span>
+        </div>
+      </div>
+      <div class="card span-6">
+        <h3>What I’m good at</h3>
+        <p class="muted">Automation-first delivery. Designing fault-tolerant, cost-aware cloud systems with crisp observability and simple operations.</p>
+        <div class="skills" style="margin-top:10px;">
+          <span class="chip">AWS (IAM, VPC, EC2, S3, RDS, ALB, Beanstalk, Batch)</span>
+          <span class="chip">EKS / Kubernetes (Helm, Velero)</span>
+          <span class="chip">ELK / EFK</span>
+          <span class="chip">Prometheus & Grafana</span>
+          <span class="chip">Terraform</span>
+          <span class="chip">AWS CDK</span>
+          <span class="chip">Docker & Compose</span>
+          <span class="chip">Jenkins • Bitbucket Pipelines • Git</span>
+          <span class="chip">Python (boto3)</span>
+          <span class="chip">Shell</span>
+          <span class="chip">GCP</span>
+          <span class="chip">Redis • MySQL • OrientDB • Elasticsearch</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about">
+      <div class="section-title">About</div>
+      <div class="card">
+        <p>DevOps engineer with <strong>5+ years</strong> across AWS, Kubernetes, and cloud migrations. Comfortable owning the stack end‑to‑end—from VPC and IaC to observability and DR. <strong>CKA</strong> certified. Team player who ships, documents, and improves runbooks so on‑call is boring.</p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-title">Experience</div>
+      <div class="card">
+        <div class="tl">
+          <div class="tl-item">
+            <h3>Senior Technical Leader (DevOps & Cloud) — AVIN Systems Pvt. Ltd.</h3>
+            <div class="muted">Apr 2020 – Present • Bengaluru</div>
+            <ul>
+              <li>Implemented and optimized <strong>Kubernetes</strong>, <strong>Velero</strong>, and <strong>ELK/EFK</strong> stacks for logging, monitoring, and backup.</li>
+              <li>Built and managed complex <strong>AWS</strong> architectures using <strong>CDK</strong> (ELK, OrientDB, Prometheus, Grafana on ECS).</li>
+              <li>Stabilized Elasticsearch pods via shard/replica tuning and <strong>es‑curator</strong> lifecycle management.</li>
+              <li>Rolled out automated <strong>Velero</strong> backups for Kubernetes clusters.</li>
+              <li>Designed and executed <strong>DR plans</strong> for Kubernetes and AWS (EC2, EBS, S3, RDS, VPC).</li>
+              <li>Led dedicated DR team to deliver Kubernetes DR on AWS.</li>
+              <li>Migrated Redis Labs to <strong>Amazon ElastiCache</strong> to reduce ops cost.</li>
+              <li>Wrote scripts for large‑scale <strong>S3</strong> migrations (on‑prem/in‑house to AWS S3).</li>
+              <li>Automated product reporting by parsing <strong>Elasticsearch</strong> logs and visualizing in Kibana.</li>
+              <li>Created custom <strong>Python</strong> metrics exported to Prometheus; dashboards in Grafana.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <h3>Graduate Intern — AVIN Systems Pvt. Ltd.</h3>
+            <div class="muted">Mar 2019 – Mar 2020 • Pune</div>
+            <ul>
+              <li>Built Python scripts to verify AUTOSAR TLV extended data serialization.</li>
+              <li>Fixed module issues and contributed to internal tooling.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title">Projects</div>
+      <div class="projects">
+        <article class="project">
+          <div class="media" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+          </div>
+          <div class="body">
+            <h4>Kubernetes DR on AWS</h4>
+            <p>Designed and executed disaster recovery for Kubernetes and dependent AWS resources. Automated backups with Velero, tested restores, and documented runbooks for low‑stress incident response.</p>
+            <div class="tags">
+              <span class="tag">Kubernetes</span>
+              <span class="tag">Velero</span>
+              <span class="tag">AWS</span>
+              <span class="tag">EKS</span>
+              <span class="tag">DR</span>
+            </div>
+          </div>
+        </article>
+        <article class="project">
+          <div class="media" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v4H3zM8 7v14M16 7v14M3 11h18"/></svg>
+          </div>
+          <div class="body">
+            <h4>ELK/EFK Observability Platform</h4>
+            <p>Implemented cluster‑wide logs and metrics: Elasticsearch, Logstash/Fluentd, Kibana, Prometheus, and Grafana. Added Python exporters for app‑specific metrics and alerting tied to SLOs.</p>
+            <div class="tags">
+              <span class="tag">Elasticsearch</span>
+              <span class="tag">Fluentd</span>
+              <span class="tag">Kibana</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+            </div>
+          </div>
+        </article>
+        <article class="project">
+          <div class="media" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 12v8h14v-8"/></svg>
+          </div>
+          <div class="body">
+            <h4>AWS ElastiCache Migration</h4>
+            <p>Migrated Redis Labs Redis to Amazon ElastiCache for managed operations and better cost control. Planned cutover, validated data integrity, and tuned instance sizing.</p>
+            <div class="tags">
+              <span class="tag">Redis</span>
+              <span class="tag">ElastiCache</span>
+              <span class="tag">AWS</span>
+              <span class="tag">Cost Optimization</span>
+            </div>
+          </div>
+        </article>
+        <article class="project">
+          <div class="media" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5-5 5 5M12 15V3"/></svg>
+          </div>
+          <div class="body">
+            <h4>Large‑scale S3 Migrations</h4>
+            <p>Wrote robust migration scripts to move TB‑scale data from in‑house S3 to AWS S3 with verification, retries, and reporting. Reduced toil with resumable transfers.</p>
+            <div class="tags">
+              <span class="tag">S3</span>
+              <span class="tag">Python</span>
+              <span class="tag">boto3</span>
+              <span class="tag">Automation</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title">Skills</div>
+      <div class="card-grid">
+        <div class="card span-6">
+          <h3>Cloud & Orchestration</h3>
+          <div class="skills">
+            <span class="chip">AWS (IAM, VPC, SG, ALB, EC2, S3, RDS, SES, Batch)</span>
+            <span class="chip">EKS • Kubernetes • Helm • Velero</span>
+            <span class="chip">GCP</span>
+          </div>
+        </div>
+        <div class="card span-6">
+          <h3>IaC & CI/CD</h3>
+          <div class="skills">
+            <span class="chip">Terraform</span>
+            <span class="chip">AWS CDK</span>
+            <span class="chip">Jenkins</span>
+            <span class="chip">Bitbucket Pipelines</span>
+            <span class="chip">Git</span>
+          </div>
+        </div>
+        <div class="card span-6">
+          <h3>Observability</h3>
+          <div class="skills">
+            <span class="chip">Elasticsearch • Logstash/Fluentd • Kibana</span>
+            <span class="chip">Prometheus • Grafana</span>
+            <span class="chip">Python custom exporters</span>
+          </div>
+        </div>
+        <div class="card span-6">
+          <h3>Programming & Tools</h3>
+          <div class="skills">
+            <span class="chip">Python (boto3)</span>
+            <span class="chip">Shell</span>
+            <span class="chip">Docker & Compose</span>
+            <span class="chip">Nginx • Apache</span>
+            <span class="chip">MySQL • OrientDB • Redis • Elasticsearch</span>
+          </div>
+        </div>
+        <div class="card span-6">
+          <h3>Certifications & Awards</h3>
+          <ul>
+            <li><strong>CKA — Certified Kubernetes Administrator</strong> (CNCF)</li>
+            <li>Above and Beyond award — AVIN Systems</li>
+            <li>5★ customer rating</li>
+          </ul>
+        </div>
+        <div class="card span-6">
+          <h3>Links</h3>
+          <div class="links">
+            <a class="btn" href="https://github.com/SHreyank4Real" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/shreyank-sharma-769a4a187/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="mailto:sharma.shreyank6@gmail.com">Email</a>
+            <a class="btn" href="tel:+919448955246">Call</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-title">Education</div>
+      <div class="card-grid">
+        <div class="card span-6">
+          <h3>Manipal University</h3>
+          <div class="muted">M.E. in Cloud Computing — Jun 2020 • GPA 8.77/10 • Manipal, India</div>
+        </div>
+        <div class="card span-6">
+          <h3>NMAMIT, Nitte</h3>
+          <div class="muted">B.E. in Computer Science — Jun 2018 • GPA 7.78/10 • Nitte, India</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">Contact</div>
+      <div class="card span-12">
+        <p class="muted">Open to senior DevOps/Platform roles. For opportunities and collaborations, reach me here:</p>
+        <div class="links" style="margin-top:8px;">
+          <a class="btn" href="mailto:sharma.shreyank6@gmail.com">📧 sharma.shreyank6@gmail.com</a>
+          <a class="btn" href="tel:+919448955246">📞 +91 94489 55246</a>
+          <a class="btn" href="Shreyank_2025.pdf" download>⬇️ Download Resume (PDF)</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="small">© <span id="year"></span> Shreyank Sharma • Built with clean HTML/CSS/JS • Optimized for print & mobile • <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle (persist to localStorage)
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved === 'light') root.classList.add('light');
+    document.getElementById('theme').addEventListener('click', () => {
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- SEO Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shreyank Sharma",
+    "jobTitle": "DevOps & Cloud Engineer",
+    "email": "mailto:sharma.shreyank6@gmail.com",
+    "telephone": "+919448955246",
+    "url": "",
+    "knowsAbout": ["DevOps","Kubernetes","AWS","Terraform","Observability","Disaster Recovery","Prometheus","Grafana","Elasticsearch","Docker","Python"],
+    "sameAs": [
+      "https://github.com/SHreyank4Real",
+      "https://www.linkedin.com/in/shreyank-sharma-769a4a187/"
+    ]
+  }
+  </script>
 </body>
 </html>
